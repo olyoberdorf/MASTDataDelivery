@@ -231,7 +231,7 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
 
     # Return the list of DataSeries objects as a JSON string.
     return_string = json.dumps(all_data_series, ensure_ascii=False,
-                               check_circular=False, encoding="utf-8",
+                               check_circular=False, # encoding="utf-8", -- encoding is not supported
                                default=json_encoder)
     if len(return_string) <= max_json_size:
         return return_string
@@ -250,7 +250,7 @@ def setup_args():
                                      "from MAST and delivers the contents "
                                      "(spectra or lightcurves) as a JSON.")
 
-    parser.add_argument("-m" "--missions", action="store", dest="missions",
+    parser.add_argument("-m", "--missions", action="store", dest="missions",
                         type=str.lower, nargs='+',
                         choices=['befs',
                                  'euve',
