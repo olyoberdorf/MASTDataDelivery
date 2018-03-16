@@ -15,6 +15,9 @@ import numpy
 from parse_obsid_iue import parse_obsid_iue
 from scipy.interpolate import interp1d
 
+def xrange(x):
+    return range(x)
+
 #--------------------
 def calculate_cut_wl(camera, order, aperture):
     """

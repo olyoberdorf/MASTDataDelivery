@@ -251,7 +251,7 @@ def setup_args():
                                      "from MAST and delivers the contents "
                                      "(spectra or lightcurves) as a JSON.")
 
-    parser.add_argument("-m" "--missions", action="store", dest="missions",
+    parser.add_argument("-m", "--missions", action="store", dest="missions",
                         type=str.lower, nargs='+',
                         choices=['befs',
                                  'euve',
