@@ -10,11 +10,9 @@
 import collections
 import os
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def parse_obsid_hsc_grism(obsid, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_hsc_grism(obsid, data_dir):
     """
     Given an HSC grism observation ID, return the FITS file to read.
 

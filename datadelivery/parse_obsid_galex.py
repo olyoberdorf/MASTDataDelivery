@@ -10,10 +10,9 @@
 import collections
 import os
 
-from deliver_data import DATA_DIR_DEFAULT
 
 #--------------------
-def parse_obsid_galex(obsid, url, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_galex(obsid, url, data_dir):
     """
     Given an GALEX preview URL, return the FITS file to read.
 

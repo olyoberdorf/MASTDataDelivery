@@ -12,11 +12,9 @@ from .data_series import DataSeries
 import numpy
 from .parse_obsid_hlsp_kegs import parse_obsid_hlsp_kegs
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def get_data_hlsp_kegs(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_hlsp_kegs(obsid, data_dir):
     """
     Given a KEGS observation ID, returns the lightcurve data.
 

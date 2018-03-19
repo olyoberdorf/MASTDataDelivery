@@ -11,11 +11,9 @@ import collections
 import os
 import re
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def parse_obsid_hlsp_everest(obsid, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_hlsp_everest(obsid, data_dir):
     """
     Given a EVEREST observation ID, returns the file to read.
 

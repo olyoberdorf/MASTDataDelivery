@@ -9,11 +9,10 @@
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_k2 import parse_obsid_k2
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_k2(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_k2(obsid, data_dir):
     """
     Given a K2 observation ID, returns the lightcurve data.
 

@@ -9,11 +9,10 @@
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_kepler import parse_obsid_kepler
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_kepler(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_kepler(obsid, data_dir):
     """
     Given a Kepler observation ID, returns the lightcurve data.
 

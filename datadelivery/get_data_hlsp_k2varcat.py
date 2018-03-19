@@ -12,11 +12,9 @@ from .data_series import DataSeries
 from .parse_obsid_hlsp_k2varcat import parse_obsid_hlsp_k2varcat
 import re
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def get_data_hlsp_k2varcat(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_hlsp_k2varcat(obsid, data_dir):
     """
     Given a K2VARCAT observation ID, returns the lightcurve data.
 
