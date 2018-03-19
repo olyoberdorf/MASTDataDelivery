@@ -10,8 +10,8 @@
 import collections
 import os
 from astropy.io import fits
-from data_series import DataSeries
-from parse_obsid_hsla import parse_obsid_hsla
+from .data_series import DataSeries
+from .parse_obsid_hsla import parse_obsid_hsla
 
 #--------------------
 def get_data_hsla(obsid, targ):

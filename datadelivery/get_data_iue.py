@@ -10,9 +10,9 @@ import collections
 import math
 from operator import itemgetter
 from astropy.io import fits
-from data_series import DataSeries
+from .data_series import DataSeries
 import numpy
-from parse_obsid_iue import parse_obsid_iue
+from .parse_obsid_iue import parse_obsid_iue
 from scipy.interpolate import interp1d
 
 def xrange(x):

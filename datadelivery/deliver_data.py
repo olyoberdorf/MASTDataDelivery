@@ -10,29 +10,30 @@
 import argparse
 import json
 import os
-from data_series import DataSeries
-from get_data_galex import get_data_galex
-from get_data_hlsp_everest import get_data_hlsp_everest
-from get_data_hlsp_k2gap import get_data_hlsp_k2gap
-from get_data_hlsp_kegs import get_data_hlsp_kegs
-from get_data_hlsp_polar import get_data_hlsp_polar
-from get_data_hlsp_k2sc import get_data_hlsp_k2sc
-from get_data_hlsp_k2sff import get_data_hlsp_k2sff
-from get_data_hlsp_k2varcat import get_data_hlsp_k2varcat
-from get_data_hsc_grism import get_data_hsc_grism
-from get_data_hsla import get_data_hsla
-from get_data_iue import get_data_iue
-from get_data_k2 import get_data_k2
-from get_data_kepler import get_data_kepler
-from get_data_states import get_data_states
 
-from mpl_get_data_befs import mpl_get_data_befs
-from mpl_get_data_euve import mpl_get_data_euve
-from mpl_get_data_fuse import mpl_get_data_fuse
-from mpl_get_data_hst import mpl_get_data_hst
-from mpl_get_data_hut import mpl_get_data_hut
-from mpl_get_data_tues import mpl_get_data_tues
-from mpl_get_data_wuppe import mpl_get_data_wuppe
+from .data_series import DataSeries
+from .get_data_galex import get_data_galex
+from .get_data_hlsp_everest import get_data_hlsp_everest
+from .get_data_hlsp_k2gap import get_data_hlsp_k2gap
+from .get_data_hlsp_kegs import get_data_hlsp_kegs
+from .get_data_hlsp_polar import get_data_hlsp_polar
+from .get_data_hlsp_k2sc import get_data_hlsp_k2sc
+from .get_data_hlsp_k2sff import get_data_hlsp_k2sff
+from .get_data_hlsp_k2varcat import get_data_hlsp_k2varcat
+from .get_data_hsc_grism import get_data_hsc_grism
+from .get_data_hsla import get_data_hsla
+from .get_data_iue import get_data_iue
+from .get_data_k2 import get_data_k2
+from .get_data_kepler import get_data_kepler
+from .get_data_states import get_data_states
+
+from .mpl_get_data_befs import mpl_get_data_befs
+from .mpl_get_data_euve import mpl_get_data_euve
+from .mpl_get_data_fuse import mpl_get_data_fuse
+from .mpl_get_data_hst import mpl_get_data_hst
+from .mpl_get_data_hut import mpl_get_data_hut
+from .mpl_get_data_tues import mpl_get_data_tues
+from .mpl_get_data_wuppe import mpl_get_data_wuppe
 
 # Default location of Kepler cache files.
 CACHE_DIR_DEFAULT = (os.path.pardir + os.path.sep + os.path.pardir +

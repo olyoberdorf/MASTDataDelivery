@@ -9,8 +9,8 @@
 
 import collections
 from astropy.io import fits
-from data_series import DataSeries
-from parse_obsid_hsc_grism import parse_obsid_hsc_grism
+from .data_series import DataSeries
+from .parse_obsid_hsc_grism import parse_obsid_hsc_grism
 
 #--------------------
 def get_data_hsc_grism(obsid):

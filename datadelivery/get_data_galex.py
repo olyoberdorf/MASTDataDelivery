@@ -8,8 +8,8 @@
 
 import collections
 from astropy.io import fits
-from data_series import DataSeries
-from parse_obsid_galex import parse_obsid_galex
+from .data_series import DataSeries
+from .parse_obsid_galex import parse_obsid_galex
 
 #--------------------
 def get_data_galex(obsid, filt, url):

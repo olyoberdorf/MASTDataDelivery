@@ -1,7 +1,7 @@
 """
-.. module:: mpl_get_data_fuse
+.. module:: mpl_get_data_tues
 
-   :synopsis: Returns FUSE spectral data as a JSON string through Randy's
+   :synopsis: Returns TUES spectral data as a JSON string through Randy's
    mast_plot.pl service.
 
 .. moduleauthor:: Scott W. Fleming <fleming@stsci.edu>
@@ -9,15 +9,15 @@
 
 import collections
 from operator import itemgetter
-from data_series import DataSeries
+from .data_series import DataSeries
 import requests
 
 #--------------------
-def mpl_get_data_fuse(obsid):
+def mpl_get_data_tues(obsid):
     """
-    Given an FUSE observation ID, returns the spectral data.
+    Given a TUES observation ID, returns the spectral data.
 
-    :param obsid: The FUSE observation ID to retrieve the data from.
+    :param obsid: The TUES observation ID to retrieve the data from.
 
     :type obsid: str
 
@@ -34,27 +34,27 @@ def mpl_get_data_fuse(obsid):
     # This defines a data point for a DataSeries object as a namedtuple.
     data_point = collections.namedtuple('DataPoint', ['x', 'y'])
 
-    # For FUSE, this defines the x-axis and y-axis units as a string.
-    fuse_xunit = "Angstroms"
-    fuse_yunit = "ergs/cm^2/s/Angstrom"
+    # For TUES, this defines the x-axis and y-axis units as a string.
+    tues_xunit = "Angstroms"
+    tues_yunit = "ergs/cm^2/s/Angstrom"
 
     # Initiate a reqest from Randy's perl script service.  Note the return is
     # a 3-element list, each element itself if a list containing another list.
     return_request = requests.get("https://archive.stsci.edu/cgi-bin/mast_plot"
-                                  ".pl?FUSE=" + obsid.upper())
+                                  ".pl?TUES=" + obsid)
 
     if return_request.status_code == 500:
         # If an HTTP 500 error is returned, catch it here, since it can't
         # be converted to a JSON string using the built-in json().
         errcode = 1
-        return_dataseries = DataSeries('fuse', obsid, [], [], [], [], errcode)
+        return_dataseries = DataSeries('tues', obsid, [], [], [], [], errcode)
     else:
         return_request = return_request.json()
 
         if not return_request[0]:
             # File not found by service.
             errcode = 2
-            return_dataseries = DataSeries('fuse', obsid, [], [], [], [],
+            return_dataseries = DataSeries('tues', obsid, [], [], [], [],
                                            errcode)
         else:
             # Wavelengths are the first list in the returned 3-element list.
@@ -82,17 +82,17 @@ def mpl_get_data_fuse(obsid):
                 plot_series = [[data_point(x=x, y=y) for x, y in zip(wls, fls)]]
 
                 # Create the return DataSeries object.
-                return_dataseries = DataSeries('fuse', obsid, plot_series,
-                                               ['FUSE_' + obsid],
-                                               [fuse_xunit], [fuse_yunit],
+                return_dataseries = DataSeries('tues', obsid, plot_series,
+                                               ['TUES_' + obsid[4:]],
+                                               [tues_xunit], [tues_yunit],
                                                errcode)
             elif not wls or not fls:
                 errcode = 3
-                return_dataseries = DataSeries('fuse', obsid, [], [], [], [],
+                return_dataseries = DataSeries('tues', obsid, [], [], [], [],
                                                errcode)
             else:
                 errcode = 4
-                return_dataseries = DataSeries('fuse', obsid, [], [], [], [],
+                return_dataseries = DataSeries('tues', obsid, [], [], [], [],
                                                errcode)
 
     # Return the DataSeries object back to the calling module.

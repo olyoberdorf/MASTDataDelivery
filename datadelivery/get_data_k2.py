@@ -7,8 +7,8 @@
 """
 
 from astropy.io import fits
-from data_series import DataSeries
-from parse_obsid_k2 import parse_obsid_k2
+from .data_series import DataSeries
+from .parse_obsid_k2 import parse_obsid_k2
 
 #--------------------
 def get_data_k2(obsid):
