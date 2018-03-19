@@ -11,6 +11,9 @@ import collections
 import os
 import re
 
+from .deliver_data import DATA_DIR_DEFAULT
+
+
 #--------------------
 # Define the look-up tables between Quarter number and epoch string(s).
 LONG_QUARTER_PREFIXES = {'0':['2009131105131'],
@@ -70,7 +73,7 @@ QUARTER_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 #--------------------
 
 #--------------------
-def parse_obsid_kepler(obsid):
+def parse_obsid_kepler(obsid, data_dir=DATA_DIR_DEFAULT):
     """
     Given a Kepler observation ID, returns the set of files to read.
 
@@ -128,9 +131,8 @@ def parse_obsid_kepler(obsid):
     # Use the Q code to get paths to each file.
     all_files = []
     all_quarters = []
-    dir_root = (os.path.pardir + os.path.sep + os.path.pardir + os.path.sep +
-                "missions" + os.path.sep + "kepler" + os.path.sep +
-                "lightcurves" + os.path.sep)
+    dir_root = (data_dir + os.path.sep + "missions" + os.path.sep + "kepler" +
+                os.path.sep + "lightcurves" + os.path.sep)
     star_dir_root = kepid[0:4] + os.path.sep + kepid + os.path.sep
 
     # Populate long cadence files if the cadence type is LC.

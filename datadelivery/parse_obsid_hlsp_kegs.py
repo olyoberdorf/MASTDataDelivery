@@ -11,8 +11,11 @@ import collections
 import os
 import re
 
+from .deliver_data import DATA_DIR_DEFAULT
+
+
 #--------------------
-def parse_obsid_hlsp_kegs(obsid):
+def parse_obsid_hlsp_kegs(obsid, data_dir=DATA_DIR_DEFAULT):
     """
     Given a KEGS observation ID, returns the file to read.
 
@@ -55,8 +58,8 @@ def parse_obsid_hlsp_kegs(obsid):
                              campaign=campaign, errcode=error_code, files=[''])
 
     # Use the observation ID to get paths to each file.
-    dir_root = (os.path.pardir + os.path.sep + os.path.pardir + os.path.sep +
-                "hlsps" + os.path.sep + "kegs" +
+    dir_root = (data_dir + os.path.sep + "hlsps" +
+                os.path.sep + "kegs" +
                 os.path.sep + campaign + os.path.sep)
     star_dir_root = (kegsid[0:4] + "00000" + os.path.sep + kegsid[4:] +
                      os.path.sep)

@@ -11,9 +11,11 @@ import numpy
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_hlsp_everest import parse_obsid_hlsp_everest
+from .deliver_data import DATA_DIR_DEFAULT
+
 
 #--------------------
-def get_data_hlsp_everest(obsid):
+def get_data_hlsp_everest(obsid, data_dir=DATA_DIR_DEFAULT):
     """
     Given a EVEREST observation ID, returns the lightcurve data.
 
@@ -44,7 +46,7 @@ def get_data_hlsp_everest(obsid):
 
     # Parse the obsID string to determine the paths+files to read.  Note:
     # this step will assign some of the error codes returned to the top level.
-    parsed_file_result = parse_obsid_hlsp_everest(obsid)
+    parsed_file_result = parse_obsid_hlsp_everest(obsid, data_dir)
 
     if parsed_file_result.errcode == 0:
         # For each file, read in the contents and create a return JSON object.

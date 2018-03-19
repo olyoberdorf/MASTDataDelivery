@@ -12,9 +12,11 @@ import os
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_hsla import parse_obsid_hsla
+from .deliver_data import DATA_DIR_DEFAULT
+
 
 #--------------------
-def get_data_hsla(obsid, targ):
+def get_data_hsla(obsid, targ, data_dir=DATA_DIR_DEFAULT):
     """
     Given an HSLA observation ID, returns the spectral data.  If a
     coadd-level spectrum, must supply the target name via the 'targ'
@@ -51,7 +53,7 @@ def get_data_hsla(obsid, targ):
     hsla_yunit = "ergs/cm^2/s/Angstrom"
 
     # Parse the obsID string to determine the paths+files to read.
-    parsed_files_result = parse_obsid_hsla(obsid, targ)
+    parsed_files_result = parse_obsid_hsla(obsid, targ, data_dir)
     errcode = parsed_files_result.errcode
 
     # We create a list of return DataSeries for each segment.

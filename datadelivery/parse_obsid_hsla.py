@@ -11,8 +11,11 @@ import collections
 from glob import glob
 import os
 
+from .deliver_data import DATA_DIR_DEFAULT
+
+
 #--------------------
-def parse_obsid_hsla(obsid, targ):
+def parse_obsid_hsla(obsid, targ, data_dir=DATA_DIR_DEFAULT):
     """
     Given an HSLA grism observation ID, return the FITS file to read.  If a
     coadd-level spectrum, must also supply a target name.
@@ -48,8 +51,8 @@ def parse_obsid_hsla(obsid, targ):
     # NGC-5548
 
     # Generate the full path and name of the file to read.
-    file_location = (os.path.pardir + os.path.sep + os.path.pardir +
-                     os.path.sep + "missions" + os.path.sep + "hst" +
+    file_location = (data_dir + os.path.sep + "missions" +
+                     os.path.sep + "hst" +
                      os.path.sep + "spectral_legacy" + os.path.sep +
                      'datapile' + os.path.sep + targ + os.path.sep)
 

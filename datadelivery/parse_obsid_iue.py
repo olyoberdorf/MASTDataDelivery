@@ -9,8 +9,11 @@
 import collections
 import os
 
+from .deliver_data import DATA_DIR_DEFAULT
+
+
 #--------------------
-def parse_obsid_iue(obsid, filt):
+def parse_obsid_iue(obsid, filt, data_dir=DATA_DIR_DEFAULT):
     """
     Given an IUE observation ID, return the file to read.
 
@@ -44,8 +47,8 @@ def parse_obsid_iue(obsid, filt):
         return parsed_values(errcode=error_code, specfiles=[''])
 
     # Generate the full path and name of the file to read.
-    file_location = (os.path.pardir + os.path.sep + os.path.pardir +
-                     os.path.sep + "missions" + os.path.sep + "iue" +
+    file_location = (data_dir + os.path.sep + "missions" +
+                     os.path.sep + "iue" +
                      os.path.sep + "data" + os.path.sep + obsid[0:3] +
                      os.path.sep + obsid[3:5] + "000" + os.path.sep)
 
