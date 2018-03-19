@@ -10,9 +10,11 @@ import collections
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_galex import parse_obsid_galex
+from .deliver_data import DATA_DIR_DEFAULT
+
 
 #--------------------
-def get_data_galex(obsid, filt, url):
+def get_data_galex(obsid, filt, url, data_dir=DATA_DIR_DEFAULT):
     """
     Given a GALEX observation ID, returns the spectral data.  Note that, in the
     case of GALEX, the obsID is not sufficient to locate the FITS file to read.
@@ -63,7 +65,7 @@ def get_data_galex(obsid, filt, url):
 
     # Parse the obsID string to determine the paths+files to read.
     if filt.upper() in ["FUV", "NUV"] and errcode == 0:
-        parsed_files_result = parse_obsid_galex(obsid, url)
+        parsed_files_result = parse_obsid_galex(obsid, url, data_dir)
         errcode = parsed_files_result.errcode
     elif errcode == 0:
         errcode = 4

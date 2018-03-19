@@ -40,9 +40,11 @@ CACHE_DIR_DEFAULT = (os.path.pardir + os.path.sep + os.path.pardir +
                      os.path.sep + "missions" + os.path.sep + "kepler" +
                      os.path.sep + "lightcurves" + os.path.sep + "cache" +
                      os.path.sep)
+DATA_DIR_DEFAULT = os.path.join(os.path.pardir, os.path.pardir)
 FILTERS_DEFAULT = None
 TARGET_DEFAULT = None
 URLS_DEFAULT = None
+
 
 #--------------------
 def json_encoder(obj):
@@ -84,7 +86,8 @@ def json_too_big_object(mission, obsid):
 
 #--------------------
 def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
-                 targets=TARGET_DEFAULT, cache_dir=CACHE_DIR_DEFAULT):
+                 targets=TARGET_DEFAULT, cache_dir=CACHE_DIR_DEFAULT,
+                 data_dir=DATA_DIR_DEFAULT):
     """
     Given a list of mission + obsid strings, returns the lightcurve and/or
     spectral data from each of them.
@@ -173,33 +176,33 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
         if mission == "fuse":
             this_data_series = mpl_get_data_fuse(obsid)
         if mission == "galex":
-            this_data_series = get_data_galex(obsid, filt, url.strip())
+            this_data_series = get_data_galex(obsid, filt, url.strip(), data_dir)
         if mission == "hlsp_everest":
-            this_data_series = get_data_hlsp_everest(obsid)
+            this_data_series = get_data_hlsp_everest(obsid, data_dir)
         if mission == "hlsp_k2gap":
-            this_data_series = get_data_hlsp_k2gap(obsid)
+            this_data_series = get_data_hlsp_k2gap(obsid, data_dir)
         if mission == "hlsp_kegs":
-            this_data_series = get_data_hlsp_kegs(obsid)
+            this_data_series = get_data_hlsp_kegs(obsid, data_dir)
         if mission == "hlsp_polar":
-            this_data_series = get_data_hlsp_polar(obsid)
+            this_data_series = get_data_hlsp_polar(obsid, data_dir)
         if mission == "hlsp_k2sc":
-            this_data_series = get_data_hlsp_k2sc(obsid)
+            this_data_series = get_data_hlsp_k2sc(obsid, data_dir)
         if mission == "hlsp_k2sff":
-            this_data_series = get_data_hlsp_k2sff(obsid)
+            this_data_series = get_data_hlsp_k2sff(obsid, data_dir)
         if mission == "hlsp_k2varcat":
-            this_data_series = get_data_hlsp_k2varcat(obsid)
+            this_data_series = get_data_hlsp_k2varcat(obsid, data_dir)
         if mission == "hsc_grism":
-            this_data_series = get_data_hsc_grism(obsid)
+            this_data_series = get_data_hsc_grism(obsid, data_dir)
         if mission == "hsla":
-            this_data_series = get_data_hsla(obsid, targ)
+            this_data_series = get_data_hsla(obsid, targ, data_dir)
         if mission == "hst":
             this_data_series = mpl_get_data_hst(obsid)
         if mission == "hut":
             this_data_series = mpl_get_data_hut(obsid)
         if mission == "iue":
-            this_data_series = get_data_iue(obsid.lower(), filt)
+            this_data_series = get_data_iue(obsid.lower(), filt, data_dir)
         if mission == "k2":
-            this_data_series = get_data_k2(obsid)
+            this_data_series = get_data_k2(obsid, data_dir)
         if mission == 'kepler':
             # If short cadence we use cached files for efficiency.
             if "_sc_" in obsid:
@@ -215,9 +218,9 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
                         return json_too_big_object(mission, obsid)
                 else:
                     # Cache file is missing, fall back to creating from FITS.
-                    this_data_series = get_data_kepler(obsid)
+                    this_data_series = get_data_kepler(obsid, data_dir)
             else:
-                this_data_series = get_data_kepler(obsid)
+                this_data_series = get_data_kepler(obsid, data_dir)
         if mission == "states":
             this_data_series = get_data_states(obsid)
         if mission == "tues":
@@ -291,6 +294,13 @@ def setup_args():
                         " have a specific need to.  The default value should be"
                         " correct for most use cases.")
 
+    parser.add_argument("-d", "--ddir", action="store", dest="data_dir",
+                        type=str, default=DATA_DIR_DEFAULT,
+                        help="Location of top level folder with data files."
+                        "This folder is expected to have a missions/ folder "
+                        "and a hlsps/ folder in it."
+                        "  By default, this is ../../")
+
     parser.add_argument("-f", "--filters", action="store", dest="filters",
                         type=str, nargs='+', default=FILTERS_DEFAULT,
                         help="Some missions"
@@ -334,7 +344,7 @@ if __name__ == "__main__":
 
     JSON_STRING = deliver_data(ARGS.missions, ARGS.obsids, filters=ARGS.filters,
                                urls=ARGS.urls, targets=ARGS.target,
-                               cache_dir=ARGS.cache_dir)
+                               cache_dir=ARGS.cache_dir, data_dir=ARGS.data_dir)
 
     # Print the return JSON object to STDOUT.
     print(JSON_STRING)
