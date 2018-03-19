@@ -10,11 +10,10 @@ import collections
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_hlsp_k2sff import parse_obsid_hlsp_k2sff
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_hlsp_k2sff(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_hlsp_k2sff(obsid, data_dir):
     """
     Given a K2SFF observation ID, returns the lightcurve data.
 

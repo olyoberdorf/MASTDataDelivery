@@ -11,11 +11,9 @@ import collections
 from glob import glob
 import os
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def parse_obsid_hsla(obsid, targ, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_hsla(obsid, targ, data_dir):
     """
     Given an HSLA grism observation ID, return the FITS file to read.  If a
     coadd-level spectrum, must also supply a target name.

@@ -11,8 +11,6 @@ import collections
 import os
 import re
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
 # Define the look-up tables between Quarter number and epoch string(s).
@@ -73,7 +71,7 @@ QUARTER_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 #--------------------
 
 #--------------------
-def parse_obsid_kepler(obsid, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_kepler(obsid, data_dir):
     """
     Given a Kepler observation ID, returns the set of files to read.
 

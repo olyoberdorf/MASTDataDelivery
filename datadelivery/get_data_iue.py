@@ -14,7 +14,6 @@ from .data_series import DataSeries
 import numpy
 from .parse_obsid_iue import parse_obsid_iue
 from scipy.interpolate import interp1d
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 def xrange(x):
@@ -330,7 +329,7 @@ def resample_spectrum(combined_spectrum, camera, showplot=False):
 #--------------------
 
 #--------------------
-def get_data_iue(obsid, filt, data_dir=DATA_DIR_DEFAULT):
+def get_data_iue(obsid, filt, data_dir):
     """
     Given an IUE observation ID, returns the spectral data.  Note that, in some
     cases, an observation ID has both a low and high dispersion spectrum

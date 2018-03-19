@@ -10,11 +10,10 @@ import collections
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_galex import parse_obsid_galex
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_galex(obsid, filt, url, data_dir=DATA_DIR_DEFAULT):
+def get_data_galex(obsid, filt, url, data_dir):
     """
     Given a GALEX observation ID, returns the spectral data.  Note that, in the
     case of GALEX, the obsID is not sufficient to locate the FITS file to read.

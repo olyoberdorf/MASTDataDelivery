@@ -11,11 +11,9 @@ import collections
 import os
 import re
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def parse_obsid_hlsp_k2sff(obsid, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_hlsp_k2sff(obsid, data_dir):
     """
     Given a K2SFF observation ID, returns the file to read.
 

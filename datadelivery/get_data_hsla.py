@@ -12,11 +12,10 @@ import os
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_hsla import parse_obsid_hsla
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_hsla(obsid, targ, data_dir=DATA_DIR_DEFAULT):
+def get_data_hsla(obsid, targ, data_dir):
     """
     Given an HSLA observation ID, returns the spectral data.  If a
     coadd-level spectrum, must supply the target name via the 'targ'

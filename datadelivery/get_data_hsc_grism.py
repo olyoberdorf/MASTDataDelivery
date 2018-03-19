@@ -11,11 +11,10 @@ import collections
 from astropy.io import fits
 from .data_series import DataSeries
 from .parse_obsid_hsc_grism import parse_obsid_hsc_grism
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_hsc_grism(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_hsc_grism(obsid, data_dir):
     """
     Given an HLA grism observation ID, returns the spectral data.
 

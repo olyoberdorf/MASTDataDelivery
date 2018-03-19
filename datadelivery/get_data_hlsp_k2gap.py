@@ -10,11 +10,10 @@ import collections
 from .data_series import DataSeries
 import numpy
 from .parse_obsid_hlsp_k2gap import parse_obsid_hlsp_k2gap
-from .deliver_data import DATA_DIR_DEFAULT
 
 
 #--------------------
-def get_data_hlsp_k2gap(obsid, data_dir=DATA_DIR_DEFAULT):
+def get_data_hlsp_k2gap(obsid, data_dir):
     """
     Given a K2GAP observation ID, returns the lightcurve data.
 

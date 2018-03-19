@@ -9,11 +9,9 @@
 import collections
 import os
 
-from .deliver_data import DATA_DIR_DEFAULT
-
 
 #--------------------
-def parse_obsid_iue(obsid, filt, data_dir=DATA_DIR_DEFAULT):
+def parse_obsid_iue(obsid, filt, data_dir):
     """
     Given an IUE observation ID, return the file to read.
 
