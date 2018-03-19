@@ -9,8 +9,8 @@
 import collections
 import numpy
 from astropy.io import fits
-from data_series import DataSeries
-from parse_obsid_hlsp_k2sc import parse_obsid_hlsp_k2sc
+from .data_series import DataSeries
+from .parse_obsid_hlsp_k2sc import parse_obsid_hlsp_k2sc
 
 #--------------------
 def get_data_hlsp_k2sc(obsid):

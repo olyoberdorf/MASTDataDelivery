@@ -8,7 +8,7 @@
 """
 
 import collections
-from data_series import DataSeries
+from .data_series import DataSeries
 from operator import itemgetter
 import requests
 

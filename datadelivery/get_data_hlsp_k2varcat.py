@@ -8,8 +8,8 @@
 
 from astropy.io import fits
 import collections
-from data_series import DataSeries
-from parse_obsid_hlsp_k2varcat import parse_obsid_hlsp_k2varcat
+from .data_series import DataSeries
+from .parse_obsid_hlsp_k2varcat import parse_obsid_hlsp_k2varcat
 import re
 
 #--------------------

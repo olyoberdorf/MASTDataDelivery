@@ -7,9 +7,9 @@
 """
 
 import collections
-from data_series import DataSeries
+from .data_series import DataSeries
 import numpy
-from parse_obsid_hlsp_k2gap import parse_obsid_hlsp_k2gap
+from .parse_obsid_hlsp_k2gap import parse_obsid_hlsp_k2gap
 
 #--------------------
 def get_data_hlsp_k2gap(obsid):

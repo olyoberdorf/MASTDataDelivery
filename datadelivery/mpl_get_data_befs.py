@@ -1,23 +1,23 @@
 """
-.. module:: mpl_get_data_wuppe
+.. module:: mpl_get_data_befs
 
-   :synopsis: Returns WUPPE spectral data as a JSON string through Randy's
+   :synopsis: Returns BEFS spectral data as a JSON string through Randy's
    mast_plot.pl service.
 
 .. moduleauthor:: Scott W. Fleming <fleming@stsci.edu>
 """
 
 import collections
-from data_series import DataSeries
+from .data_series import DataSeries
 from operator import itemgetter
 import requests
 
 #--------------------
-def mpl_get_data_wuppe(obsid):
+def mpl_get_data_befs(obsid):
     """
-    Given a WUPPE observation ID, returns the spectral data.
+    Given a BEFS observation ID, returns the spectral data.
 
-    :param obsid: The WUPPE observation ID to retrieve the data from.
+    :param obsid: The BEFS observation ID to retrieve the data from.
 
     :type obsid: str
 
@@ -34,34 +34,34 @@ def mpl_get_data_wuppe(obsid):
     # This defines a data point for a DataSeries object as a namedtuple.
     data_point = collections.namedtuple('DataPoint', ['x', 'y'])
 
-    # For WUPPE, this defines the x-axis and y-axis units as a string.
-    wuppe_xunit = "Angstroms"
-    wuppe_yunit = "ergs/cm^2/s/Angstrom"
+    # For BEFS, this defines the x-axis and y-axis units as a string.
+    befs_xunit = "Angstroms"
+    befs_yunit = "ergs/cm^2/s/Angstrom"
 
     # Initiate a reqest from Randy's perl script service.  Note the return is
     # a 3-element list, each element itself if a list containing another list.
     return_request = requests.get("https://archive.stsci.edu/cgi-bin/mast_plot"
-                                  ".pl?WUPPE=" + obsid.lower())
+                                  ".pl?BEFS=" + obsid.upper())
 
     if return_request.status_code == 500:
         # If an HTTP 500 error is returned, catch it here, since it can't
         # be converted to a JSON string using the built-in json().
         errcode = 1
-        return_dataseries = DataSeries('wuppe', obsid, [], [], [], [], errcode)
+        return_dataseries = DataSeries('befs', obsid, [], [], [], [], errcode)
     else:
         return_request = return_request.json()
 
         if len(return_request[0]) == 0:
             # File not found by service.
             errcode = 2
-            return_dataseries = DataSeries('wuppe', obsid, [], [], [], [],
+            return_dataseries = DataSeries('befs', obsid, [], [], [], [],
                                            errcode)
         else:
             # Wavelengths are the first list in the returned 3-element list.
             wls = [float(x) for x in return_request[0][0]]
 
             # Fluxes are the second list in the returned 3-element list.
-            fls = [float("{0:.8e}".format(x)) for x in return_request[1][0]]
+            fls = [float(x) for x in return_request[1][0]]
 
             # This error code will be used unless there's a problem reading any
             # of the FITS files in the list.
@@ -82,17 +82,17 @@ def mpl_get_data_wuppe(obsid):
                 plot_series = [[data_point(x=x, y=y) for x, y in zip(wls, fls)]]
 
                 # Create the return DataSeries object.
-                return_dataseries = DataSeries('wuppe', obsid, plot_series,
-                                               ['WUPPE_' + obsid],
-                                               [wuppe_xunit], [wuppe_yunit],
+                return_dataseries = DataSeries('befs', obsid, plot_series,
+                                               ['BEFS_' + obsid[4:]],
+                                               [befs_xunit], [befs_yunit],
                                                errcode)
             elif len(wls) == 0 or len(fls) == 0:
                 errcode = 3
-                return_dataseries = DataSeries('wuppe', obsid, [], [], [], [],
+                return_dataseries = DataSeries('befs', obsid, [], [], [], [],
                                                errcode)
             else:
                 errcode = 4
-                return_dataseries = DataSeries('wuppe', obsid, [], [], [], [],
+                return_dataseries = DataSeries('befs', obsid, [], [], [], [],
                                                errcode)
 
     # Return the DataSeries object back to the calling module.

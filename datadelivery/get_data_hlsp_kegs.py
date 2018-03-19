@@ -8,9 +8,9 @@
 
 import collections
 from astropy.io import fits
-from data_series import DataSeries
+from .data_series import DataSeries
 import numpy
-from parse_obsid_hlsp_kegs import parse_obsid_hlsp_kegs
+from .parse_obsid_hlsp_kegs import parse_obsid_hlsp_kegs
 
 #--------------------
 def get_data_hlsp_kegs(obsid):

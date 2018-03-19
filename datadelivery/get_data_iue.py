@@ -8,11 +8,11 @@
 
 from astropy.io import fits
 import collections
-from data_series import DataSeries
+from .data_series import DataSeries
 import math
 import numpy
 from operator import itemgetter
-from parse_obsid_iue import parse_obsid_iue
+from .parse_obsid_iue import parse_obsid_iue
 from scipy.interpolate import interp1d
 
 def xrange(x):
