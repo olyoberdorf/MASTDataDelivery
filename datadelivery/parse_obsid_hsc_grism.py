@@ -12,7 +12,7 @@ import os
 
 
 #--------------------
-def parse_obsid_hsc_grism(obsid, data_dir):
+def parse_obsid_hsc_grism(obsid, missions_dir):
     """
     Given an HSC grism observation ID, return the FITS file to read.
 
@@ -60,7 +60,7 @@ def parse_obsid_hsc_grism(obsid, data_dir):
     obsid_subdirpart = obsid_splits[2][0:4] + os.path.sep + obsid_splits[2][0:6]
 
     # Generate the full path and name of the file to read.
-    file_location = (data_dir + os.path.sep + "missions" +
+    file_location = (missions_dir +
                      os.path.sep + "hst" +
                      os.path.sep + "hla" + os.path.sep + 'data24' +
                      os.path.sep + obsid_instpart + os.path.sep +

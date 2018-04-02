@@ -13,7 +13,7 @@ from .parse_obsid_galex import parse_obsid_galex
 
 
 #--------------------
-def get_data_galex(obsid, filt, url, data_dir):
+def get_data_galex(obsid, filt, url, missions_dir):
     """
     Given a GALEX observation ID, returns the spectral data.  Note that, in the
     case of GALEX, the obsID is not sufficient to locate the FITS file to read.
@@ -64,7 +64,7 @@ def get_data_galex(obsid, filt, url, data_dir):
 
     # Parse the obsID string to determine the paths+files to read.
     if filt.upper() in ["FUV", "NUV"] and errcode == 0:
-        parsed_files_result = parse_obsid_galex(obsid, url, data_dir)
+        parsed_files_result = parse_obsid_galex(obsid, url, missions_dir)
         errcode = parsed_files_result.errcode
     elif errcode == 0:
         errcode = 4

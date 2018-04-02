@@ -13,7 +13,7 @@ import re
 
 
 #--------------------
-def parse_obsid_hlsp_everest(obsid, data_dir):
+def parse_obsid_hlsp_everest(obsid, hlsps_dir):
     """
     Given a EVEREST observation ID, returns the file to read.
 
@@ -56,7 +56,7 @@ def parse_obsid_hlsp_everest(obsid, data_dir):
                              campaign=campaign, errcode=error_code, files=[''])
 
     # Use the observation ID to get paths to each file.
-    dir_root = (data_dir + os.path.sep + "hlsps" +
+    dir_root = (hlsps_dir +
                 os.path.sep + "everest" +
                 os.path.sep +'v2' +os.path.sep + campaign + os.path.sep)
     star_dir_root = (everestid[0:4] + "00000" + os.path.sep +

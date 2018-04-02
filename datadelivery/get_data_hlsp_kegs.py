@@ -14,7 +14,7 @@ from .parse_obsid_hlsp_kegs import parse_obsid_hlsp_kegs
 
 
 #--------------------
-def get_data_hlsp_kegs(obsid, data_dir):
+def get_data_hlsp_kegs(obsid, hlsps_dir):
     """
     Given a KEGS observation ID, returns the lightcurve data.
 
@@ -41,7 +41,7 @@ def get_data_hlsp_kegs(obsid, data_dir):
 
     # Parse the obsID string to determine the paths+files to read.  Note:
     # this step will assign some of the error codes returned to the top level.
-    parsed_file_result = parse_obsid_hlsp_kegs(obsid, data_dir)
+    parsed_file_result = parse_obsid_hlsp_kegs(obsid, hlsps_dir)
 
     if parsed_file_result.errcode == 0:
         # For each file, read in the contents and create a return JSON object.

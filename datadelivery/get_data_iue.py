@@ -329,7 +329,7 @@ def resample_spectrum(combined_spectrum, camera, showplot=False):
 #--------------------
 
 #--------------------
-def get_data_iue(obsid, filt, data_dir):
+def get_data_iue(obsid, filt, missions_dir):
     """
     Given an IUE observation ID, returns the spectral data.  Note that, in some
     cases, an observation ID has both a low and high dispersion spectrum
@@ -373,7 +373,7 @@ def get_data_iue(obsid, filt, data_dir):
     if filt == ' ':
         filt = "UNKNOWN"
     if filt.upper() in ["LOW_DISP", "HIGH_DISP"] or filt == "UNKNOWN":
-        parsed_files_result = parse_obsid_iue(obsid, filt.upper(), data_dir)
+        parsed_files_result = parse_obsid_iue(obsid, filt.upper(), missions_dir)
         errcode = parsed_files_result.errcode
     else:
         errcode = 4

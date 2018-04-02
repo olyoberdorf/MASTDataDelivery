@@ -12,7 +12,7 @@ import os
 
 
 #--------------------
-def parse_obsid_galex(obsid, url, data_dir):
+def parse_obsid_galex(obsid, url, missions_dir):
     """
     Given an GALEX preview URL, return the FITS file to read.
 
@@ -46,7 +46,7 @@ def parse_obsid_galex(obsid, url, data_dir):
         return parsed_values(errcode=error_code, specfiles=[''])
 
     # Generate the full path and name of the file to read.
-    file_location = (data_dir + os.path.sep + "missions" +
+    file_location = (missions_dir +
                      os.path.sep + "galex" +
                      os.path.sep +
                      os.path.sep.join(url.split(os.path.sep)[2:-3]) +

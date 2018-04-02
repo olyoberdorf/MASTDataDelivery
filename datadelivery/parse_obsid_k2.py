@@ -13,7 +13,7 @@ import re
 
 
 #--------------------
-def parse_obsid_k2(obsid, data_dir):
+def parse_obsid_k2(obsid, missions_dir):
     """
     Given a K2 observation ID, returns the file to read.
 
@@ -65,7 +65,7 @@ def parse_obsid_k2(obsid, data_dir):
                              campaign=campaign, errcode=error_code, files=[''])
 
     # Use the observation ID to get paths to each file.
-    dir_root = (data_dir + os.path.sep + "missions" + os.path.sep + "k2" +
+    dir_root = (missions_dir + os.path.sep + "k2" +
                 os.path.sep + "lightcurves" +
                 os.path.sep + campaign_subdir + os.path.sep)
     star_dir_root = (k2id[0:4] + "00000" + os.path.sep + k2id[4:6] + "000" +
