@@ -12,7 +12,7 @@ from .parse_obsid_k2 import parse_obsid_k2
 
 
 #--------------------
-def get_data_k2(obsid, data_dir):
+def get_data_k2(obsid, missions_dir):
     """
     Given a K2 observation ID, returns the lightcurve data.
 
@@ -38,7 +38,7 @@ def get_data_k2(obsid, data_dir):
 
     # Parse the obsID string to determine the paths+files to read.  Note:
     # this step will assign some of the error codes returned to the top level.
-    parsed_file_result = parse_obsid_k2(obsid, data_dir)
+    parsed_file_result = parse_obsid_k2(obsid, missions_dir)
 
     if parsed_file_result.errcode == 0:
         # For each file, read in the contents and create a return JSON object.

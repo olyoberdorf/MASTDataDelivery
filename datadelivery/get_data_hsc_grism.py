@@ -14,7 +14,7 @@ from .parse_obsid_hsc_grism import parse_obsid_hsc_grism
 
 
 #--------------------
-def get_data_hsc_grism(obsid, data_dir):
+def get_data_hsc_grism(obsid, missions_dir):
     """
     Given an HLA grism observation ID, returns the spectral data.
 
@@ -47,7 +47,7 @@ def get_data_hsc_grism(obsid, data_dir):
     hsc_grism_yunit = "ergs/cm^2/s/Angstrom"
 
     # Parse the obsID string to determine the paths+files to read.
-    parsed_files_result = parse_obsid_hsc_grism(obsid, data_dir)
+    parsed_files_result = parse_obsid_hsc_grism(obsid, missions_dir)
     errcode = parsed_files_result.errcode
 
     # For each file, read in the contents and create a return JSON object.

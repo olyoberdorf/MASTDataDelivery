@@ -71,7 +71,7 @@ QUARTER_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 #--------------------
 
 #--------------------
-def parse_obsid_kepler(obsid, data_dir):
+def parse_obsid_kepler(obsid, missions_dir):
     """
     Given a Kepler observation ID, returns the set of files to read.
 
@@ -129,7 +129,7 @@ def parse_obsid_kepler(obsid, data_dir):
     # Use the Q code to get paths to each file.
     all_files = []
     all_quarters = []
-    dir_root = (data_dir + os.path.sep + "missions" + os.path.sep + "kepler" +
+    dir_root = (missions_dir + os.path.sep + "kepler" +
                 os.path.sep + "lightcurves" + os.path.sep)
     star_dir_root = kepid[0:4] + os.path.sep + kepid + os.path.sep
 

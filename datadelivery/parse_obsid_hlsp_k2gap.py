@@ -13,7 +13,7 @@ import re
 
 
 #--------------------
-def parse_obsid_hlsp_k2gap(obsid, data_dir):
+def parse_obsid_hlsp_k2gap(obsid, hlsps_dir):
     """
     Given a K2GAP observation ID, returns the file to read.
 
@@ -56,7 +56,7 @@ def parse_obsid_hlsp_k2gap(obsid, data_dir):
                              campaign=campaign, errcode=error_code, files=[''])
 
     # Use the observation ID to get paths to each file.
-    dir_root = (data_dir + os.path.sep + "hlsps" + os.path.sep + "k2gap" +
+    dir_root = (hlsps_dir + os.path.sep + "k2gap" +
                 os.path.sep + campaign + os.path.sep)
     star_dir_root = (k2gapid[0:4] + "00000" + os.path.sep + k2gapid[4:] +
                      os.path.sep)

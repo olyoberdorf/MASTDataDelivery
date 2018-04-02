@@ -15,7 +15,7 @@ from .parse_obsid_hsla import parse_obsid_hsla
 
 
 #--------------------
-def get_data_hsla(obsid, targ, data_dir):
+def get_data_hsla(obsid, targ, missions_dir):
     """
     Given an HSLA observation ID, returns the spectral data.  If a
     coadd-level spectrum, must supply the target name via the 'targ'
@@ -52,7 +52,7 @@ def get_data_hsla(obsid, targ, data_dir):
     hsla_yunit = "ergs/cm^2/s/Angstrom"
 
     # Parse the obsID string to determine the paths+files to read.
-    parsed_files_result = parse_obsid_hsla(obsid, targ, data_dir)
+    parsed_files_result = parse_obsid_hsla(obsid, targ, missions_dir)
     errcode = parsed_files_result.errcode
 
     # We create a list of return DataSeries for each segment.

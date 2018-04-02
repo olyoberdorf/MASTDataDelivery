@@ -13,7 +13,7 @@ import re
 
 
 #--------------------
-def parse_obsid_hlsp_k2sc(obsid, data_dir):
+def parse_obsid_hlsp_k2sc(obsid, hlsps_dir):
     """
     Given a K2SC observation ID, returns the file to read.
 
@@ -59,7 +59,7 @@ def parse_obsid_hlsp_k2sc(obsid, data_dir):
                              campaign=campaign, errcode=error_code, files=[''])
 
     # Use the observation ID to get paths to each file.
-    dir_root = (data_dir + os.path.sep + "hlsps" +
+    dir_root = (hlsps_dir +
                 os.path.sep + "k2sc" +
                 os.path.sep + ver_str + os.path.sep + campaign + os.path.sep)
     star_dir_root = (k2scid[0:4] + "00000" + os.path.sep)
