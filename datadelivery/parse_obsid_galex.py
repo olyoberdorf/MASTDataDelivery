@@ -57,7 +57,6 @@ def parse_obsid_galex(obsid, url, missions_dir):
 
     if os.path.isfile(spec_file):
         return parsed_values(errcode=error_code, specfiles=[spec_file])
-    else:
-        error_code = 2
-        return parsed_values(errcode=error_code, specfiles=[''])
+    error_code = 2
+    return parsed_values(errcode=error_code, specfiles=[''])
 #--------------------

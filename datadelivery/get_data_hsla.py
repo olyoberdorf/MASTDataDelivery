@@ -145,6 +145,5 @@ def get_data_hsla(obsid, targ, missions_dir):
     # Return the DataSeries object back to the calling module.
     if len(all_data_series) == 1:
         return all_data_series[0]
-    else:
-        return all_data_series
+    return all_data_series
 #--------------------
