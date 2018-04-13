@@ -87,7 +87,8 @@ def json_too_big_object(mission, obsid):
 #--------------------
 def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
                  targets=TARGET_DEFAULT, cache_dir=CACHE_DIR_DEFAULT,
-                 data_dir=DATA_DIR_DEFAULT, missions_dir=None, hlsps_dir=None):
+                 data_dir=DATA_DIR_DEFAULT, missions_dir=None, hlsps_dir=None,
+                 states_dir=None):
     """
     Given a list of mission + obsid strings, returns the lightcurve and/or
     spectral data from each of them.
@@ -125,6 +126,8 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
 
     :param hlsps_dir: The folder with the HLSP files, defaults to data_dir/hlsps
 
+    :param states_dir: The folder with the States files, defaults to data_dir/states
+
     :returns: JSON -- The lightcurve or spectral data from the requested data
     products.
     """
@@ -156,6 +159,8 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
         missions_dir = os.path.join(data_dir, "missions")
     if hlsps_dir is None:
         hlsps_dir = os.path.join(data_dir, "hlsps")
+    if states_dir is None:
+        states_dir = os.path.join(data_dir, "states")
 
     # Make sure the input data are sorted based on the obsids, so that the
     # input is order-independent.
@@ -233,7 +238,7 @@ def deliver_data(missions, obsids, filters=FILTERS_DEFAULT, urls=URLS_DEFAULT,
             else:
                 this_data_series = get_data_kepler(obsid, missions_dir)
         if mission == "states":
-            this_data_series = get_data_states(obsid)
+            this_data_series = get_data_states(obsid, states_dir)
         if mission == "tues":
             this_data_series = mpl_get_data_tues(obsid)
         if mission == "wuppe":
@@ -322,6 +327,11 @@ def setup_args():
                         help="Location of folder with HLSP data files."
                         "  By default, this is ../../hlsps")
 
+    parser.add_argument("-s", "--sdir", action="store", dest="states_dir",
+                        type=str, default=None,
+                        help="Location of folder with States data files."
+                        "  By default, this is ../../states")
+
     parser.add_argument("-f", "--filters", action="store", dest="filters",
                         type=str, nargs='+', default=FILTERS_DEFAULT,
                         help="Some missions"
@@ -366,7 +376,8 @@ if __name__ == "__main__":
     JSON_STRING = deliver_data(ARGS.missions, ARGS.obsids, filters=ARGS.filters,
                                urls=ARGS.urls, targets=ARGS.target,
                                cache_dir=ARGS.cache_dir, data_dir=ARGS.data_dir,
-                               missions_dir=ARGS.missions_dir, hlsps_dir=ARGS.hlsps_dir)
+                               missions_dir=ARGS.missions_dir, hlsps_dir=ARGS.hlsps_dir,
+                               states_dir=ARGS.states_dir)
 
     # Print the return JSON object to STDOUT.
     print(JSON_STRING)

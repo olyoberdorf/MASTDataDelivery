@@ -8,11 +8,11 @@
 
 import collections
 import numpy
-from data_series import DataSeries
-from parse_obsid_states import parse_obsid_states
+from .data_series import DataSeries
+from .parse_obsid_states import parse_obsid_states
 
 #--------------------
-def get_data_states(obsid):
+def get_data_states(obsid, states_dir):
     """
     Given a STATES observation ID, returns the spectral data.
 
@@ -43,7 +43,7 @@ def get_data_states(obsid):
     states_yunit = "(R_p/R_s)^2"
 
     # Parse the obsID string to determine the paths+files to read.
-    parsed_files_result = parse_obsid_states(obsid)
+    parsed_files_result = parse_obsid_states(obsid, states_dir)
     errcode = parsed_files_result.errcode
 
     # For each file, read in the contents and create a return JSON object.
