@@ -36,7 +36,7 @@ def get_data_states(obsid, states_dir):
     errcode = 0
 
     # This defines a data point for a DataSeries object as a namedtuple.
-    data_point = collections.namedtuple('DataPoint', ['x', 'y'])
+    data_point = collections.namedtuple('DataPoint', ['x', 'y', 'xerr', 'yerr'])
 
     # For STATES, this defines the x-axis and y-axis units as a string.
     states_xunit = "microns"
@@ -55,6 +55,8 @@ def get_data_states(obsid, states_dir):
                                                               comments='#')
                 wls = [float(x) for x in wls]
                 fls = [float(x) for x in rprss]
+                xerr = [float(x) for x in dwls]
+                yerr = [float(x) for x in rprserrs]
             except IOError:
                 errcode = 2
                 return_dataseries = DataSeries(
@@ -64,10 +66,10 @@ def get_data_states(obsid, states_dir):
                 return_dataseries = DataSeries(
                     'states', obsid, [], [''], [''], [''], errcode)
             else:
-                wlfls = [x for x in zip(wls, fls)]
+                wlfls = [x for x in zip(wls, fls, xerr, yerr)]
                 return_dataseries = DataSeries(
                     'states', obsid,
-                    [[data_point(x=x, y=y) for x, y in wlfls]],
+                    [[data_point(x=x, y=y, xerr=xerr, yerr=yerr) for x, y, xerr, yerr in wlfls]],
                     ['STATES_' + obsid],
                     [states_xunit], [states_yunit], errcode)
     else:
