@@ -34,8 +34,12 @@ def parse_obsid_states(obsid, states_dir):
     error_code = 0
 
     # Generate the full path and name of the file to read.
-    file_location = (states_dir + os.path.sep +
-                     "transmission_spectra" + os.path.sep)
+    if "_transmission_" in obsid:
+        file_location = (states_dir + os.path.sep +
+                         "transmission_spectra" + os.path.sep)
+    else:
+        file_location = (states_dir + os.path.sep +
+                         "emission_spectra" + os.path.sep)
 
     # The name of the file is equal to the STATES observation ID.
     spec_file = file_location + obsid + ".txt"
